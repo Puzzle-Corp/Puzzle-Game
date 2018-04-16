@@ -1,0 +1,46 @@
+.App{
+    text-align: center;
+    width: 95%;
+    margin: 15px auto;
+}
+.container-drag{
+    text-align: center;
+}
+
+.store{
+    float: left;
+    width: 150px;
+    height: 100%;
+    left:0;
+    top:10;
+    background-color: blueviolet;
+    border-right: 1px dotted;
+}
+.header{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background-color: #E0E0E0;
+    width: 100%;
+}
+.cart-header{
+    display: inline-block;
+    background-color: skyblue;
+    width: 100%;
+}
+.droppable{
+    float: right;
+    width: 150px;
+    height: 100%;
+    right: 0;
+    top:10;
+    background-color:orange;
+    border-left: 1px dotted;
+}
+.dragable{
+    width: 100px;
+    height: 100px;
+    background-color:green;
+    margin: 5px auto;
+    line-height: 5em;
+}
