@@ -70,6 +70,10 @@ class Nav extends Component {
               <li className={window.location.pathname === "/game" ? "active" : ""}>
                 <Link to="/game">Game</Link>
               </li>
+              
+              <li className={window.location.pathname === "/game3" ? "active" : ""}>
+                <Link to="/game3">Game3</Link>
+              </li>
             </ul>
           </div>
         </div>

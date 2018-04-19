@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import Puzzle from "./pages/Puzzle";
 import Game from "./pages/Game";
+import Game3 from "./pages/Game3";
 
 const App = () => (
   <Router>
@@ -15,8 +16,9 @@ const App = () => (
        {/* <Route exact path="/" component={Home} />*/}
         <Route exact path="/categories/:id" component={Puzzle} />
         <Route exact path="/Game" component={Game} />
+        <Route exact path="/Game3" component={Game3} />
       </Wrapper>
-      <Footer />
+     {/* <Footer /> */}
     </div>
   </Router>
 );

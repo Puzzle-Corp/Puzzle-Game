@@ -3,6 +3,24 @@ import "../assets/css/DragDropApp.css";
 
 export default class DragDropApp extends Component {
     // step - 1
+/* 
+pieces:[
+            {id:1,url:"../../assets/images/Game/0-0-1-1.jpg",position:"1-1", bgcolor:"yellow"},
+            {id:2,url:"../../assets/images/Game/0-0-1-1.jpg",position:"1-2", bgcolor:"pink"},
+            {id:3,url:"../../assets/images/Game/0-0-1-1.jpg",position:"1-3", bgcolor:"skyblue"},
+            {id:4,url:"../../assets/images/Game/0-0-1-1.jpg",position:"2-1", bgcolor:"red"},
+            {id:5,url:"../../assets/images/Game/0-0-1-1.jpg",position:"2-2", bgcolor:"yellow"},
+            {id:6,url:"../../assets/images/Game/0-0-1-1.jpg",position:"2-3", bgcolor:"pink"},
+            {id:7,url:"../../assets/images/Game/0-0-1-1.jpg",position:"3-1", bgcolor:"skyblue"},
+            {id:8,url:"../../assets/images/Game/0-0-1-1.jpg",position:"3-2", bgcolor:"red"},
+            {id:9,url:"../../assets/images/Game/0-0-1-1.jpg",position:"3-3", bgcolor:"yellow"},
+            {id:10,url:"../../assets/images/Game/0-0-1-1.jpg",position:"4-1", bgcolor:"pink"},
+            {id:11,url:"../../assets/images/Game/0-0-1-1.jpg",position:"4-2", bgcolor:"skyblue"},
+            {id:12,url:"../../assets/images/Game/0-0-1-1.jpg",position:"4-3", bgcolor:"red"},
+        ]
+*/
+
+
     state={
         items:[
             {id:1,name:"item 1 ",position:"store", bgcolor:"yellow"},
@@ -38,10 +56,10 @@ export default class DragDropApp extends Component {
     }
     render() {
         //step 2
-        var items={
+        var items={ //squares:Array(4).fill(null)
             store:[],
             cart:[],
-            store2:[]
+           store2:[]
         }
 
         //step 3 is state:
