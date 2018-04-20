@@ -5,7 +5,7 @@ import "../../assets/css/game.css";
 const GameBoard = (props) =>{
 
     return(
-        <div className="gameBoard" id="gameBoard"
+        <div className="boardWrapper rightS" style={props.style}   id="gameBoard"
         onDrop={props.handleDrop}
         onDragOver={props.handleDragOver}>
         {props.children}

@@ -10,7 +10,7 @@ mongoose.connect(
     useMongoClient: true
   }
 );
-
+/*
 const categorySeed = [
   {
     name: "Jigsaw Puzzle",
@@ -19,7 +19,7 @@ const categorySeed = [
     date: new Date(Date.now())
   },
   {
-    name: "Word puzzles",
+    name: "Word puzzle",
     parentCatName:"Root",
     catLevel: 0,
     date: new Date(Date.now())
@@ -49,4 +49,28 @@ db.Category
     console.error(err);
     process.exit(1);
   }); 
+*/
+  const gameSeed = [
+    {
+      name: "Game-1 Animal",
+      date: new Date(Date.now())
+    },
+    {
+      name: "Game-2 Nature",
+      date: new Date(Date.now())
+    },
+  ]
+  
+  db.Game
+    .remove({})
+    .then(() => db.Game.collection.insertMany(gameSeed))
+    .then(data => {
+      console.log(data.insertedIds.length + " records inserted!");
+      process.exit(0);
+    })
+    .catch(err => {
+      console.error(err);
+      process.exit(1);
+    }); 
+  
 

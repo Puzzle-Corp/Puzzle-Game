@@ -46,7 +46,7 @@ class Nav extends Component {
                 <a href="*" className={window.location.pathname === "*" ? "active" : ""}
                  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   Puzzles <span className="caret"></span></a>
-                <ul class="dropdown-menu" >
+                <ul className="dropdown-menu" >
                   {this.state.rootCategories.map(category => (
                     <ListItem key={category._id}>
                       <a href={"/categories/" + category._id}>

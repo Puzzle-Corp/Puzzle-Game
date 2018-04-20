@@ -5,7 +5,7 @@ import "../../assets/css/game.css";
 const RandomBoard = (props) =>{
 
     return(
-        <div className="randomBoard" id="randomBoard"
+        <div className="boardWrapper leftS" style={props.style}  id="randomBoard"
         onDrop={props.handleDrop}
         onDragOver={props.handleDragOver}>
         {props.children}

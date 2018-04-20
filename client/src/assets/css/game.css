@@ -31,3 +31,30 @@
   .game-info {
     margin-left: 20px;
   }
+
+
+  * {box-sizing: border-box;}
+.boardWrapper {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.boardWrapper > div {
+  border: 1px dashed rgb(233,171,88);
+  background-color: rgba(233,171,88,.5);
+  padding: 0;
+  color: #d9480f;
+}
+.boardWrapper {
+  display: grid;
+  grid-gap: 0px;
+  grid-auto-rows: minmax(30px, auto);
+}
+.leftS{
+  float:left;
+}
+.rightS{
+  float: left;
+}
+
+
