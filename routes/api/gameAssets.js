@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const gameAssetsController = require("../../controllers/gameAssetsController");
+const gameAssetsController = require("../../controllers/gameAssetsController.js");
 
 
 //router.route("/").get(gameAssetsController.findAllGameAssets);

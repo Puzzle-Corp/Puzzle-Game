@@ -1,5 +1,5 @@
 module.exports = {
-  Category: require("./Category"),
-  Game: require("./Game"),
-  GameAsset: require("./GameAsset")
+  Category: require("./Category.js"),
+  Game: require("./Game.js"),
+  GameAsset: require("./GameAsset.js")
 };
