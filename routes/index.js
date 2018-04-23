@@ -8,7 +8,7 @@ const apiRoutes = require("./api");
 router.use("/api", apiRoutes);
 
 router.use("/", function (req, res) {
-  res.send("../client/build/index.html");
+  res.send("./client/build/index.html");
 })
 
 // If no API routes are hit, send the React app
