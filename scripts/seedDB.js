@@ -11,6 +11,65 @@ mongoose.connect(
   }
 );
 
+
+// Step 1 - 1
+/*
+const categorySeed = [
+  {
+    name: "Jigsaw Puzzle",
+    parentCatId:null,
+    catLevel: 0,
+    date: new Date(Date.now())
+  },
+  {
+    name: "Word puzzle",
+    parentCatId:null,
+    catLevel: 0,
+    date: new Date(Date.now())
+  },
+]
+
+db.Category
+  .remove({})
+  .then(() => db.Category.collection.insertMany(categorySeed))
+  .then(data => {
+    console.log(data.insertedIds.length + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  }); 
+
+*/
+/*
+// Step 1 - 2
+var ObjectId = mongoose.Types.ObjectId,
+ categorySeed = [
+  //Jigsaw Puzzle
+  {
+    name: "Animals",
+    parentCatId: ObjectId("5add33011a64a767d8e5c35c"),
+    catLevel: 1,
+    date: new Date(Date.now()),
+  },
+  {
+    name: "Nature",
+    parentCatId: ObjectId("5add33011a64a767d8e5c35c"),
+    catLevel: 1,
+    date: new Date(Date.now()),
+  },
+]
+
+
+  db.Category.collection.insert(categorySeed, function (err, data) {
+
+  });
+
+
+*/
+
+
 //Step 2
 /*
 const gameSeed = [
@@ -62,61 +121,8 @@ gameSeed.forEach(function (p) {
 });
 
 */
-/*
-db.Game
-  .remove({})
-  .then(() => db.Game.collection.insertMany(gameSeed))
-  .then(data => {
-    console.log(data.insertedIds.length + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-*/
-// Step 1
-/*
-const categorySeed = [
-  {
-    name: "Jigsaw Puzzle",
-    parentCatName:"Root",
-    catLevel: 0,
-    date: new Date(Date.now())
-  },
-  {
-    name: "Word puzzle",
-    parentCatName:"Root",
-    catLevel: 0,
-    date: new Date(Date.now())
-  },
-  {
-    name: "Animals",
-    parentCatName:"Jigsaw Puzzle",
-    catLevel: 1,
-    date: new Date(Date.now()),
-  },
-  {
-    name: "Nature",
-    parentCatName:"Jigsaw Puzzle",
-    catLevel: 1,
-    date: new Date(Date.now()),
-  },
-]
 
-db.Category
-  .remove({})
-  .then(() => db.Category.collection.insertMany(categorySeed))
-  .then(data => {
-    console.log(data.insertedIds.length + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  }); 
 
-*/
 //Step 3
 
 const gameAssetsSeed = [
@@ -261,33 +267,3 @@ gameAssetsSeed.forEach(function (p) {
     });
   });
 });
-
-
-/*
-db.GameAsset
-  .remove({})
-  .then(() => db.GameAsset.collection.insertMany(gameAssetsSeed))
-  .then(function (dbAsset) {
-
-    //dbAsset.ops.map(p=> { console.log(p._id);
-
-    //db.Game.collection.findOneAndUpdate({name:p.gameName},{$push:{assets:p._id}},{new:true});
-
-    //});
-
-    console.log(dbAsset);
-    return db.Game.collection.findOneAndUpdate({ name: "Game-2 Nature" }, { $push: { assets: dbAsset.insertedIds } }, { new: true });
-  })
-  .then(data => {
-    console.log(" records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-
-
-*/
-
-

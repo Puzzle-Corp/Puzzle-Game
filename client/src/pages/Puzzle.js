@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { List, ListItem } from "../components/Dropdown";
 import "../App.css";
+import Jumbotron from "../components/Jumbotron";
 
 
 class Puzzle extends Component {
@@ -29,20 +30,24 @@ class Puzzle extends Component {
         console.log("Cat Name: " + catName);
         this.setState({ currentCatPath: catName });
         API.getCategoriesByParent(catName)
-            .then(res => { this.setState({ levelCategories: res.data }); console.log(res.data); })
+            .then(res => { this.setState({ levelCategories: res.data });// console.log(res.data); 
+        })
             .catch(err => console.log(err));
 
 
         var gameCat = this.props.match.params.id;
         console.log("game cat to search: " + gameCat);
-
+        API.getGamesInCategory(gameCat)
+            .then(res => { this.setState({ gamesList: res.data }); console.log("games List: "+res.data); })
+            .catch(err => console.log(err))
 
     }
-    
+
     render() {
         // To see what are available from props?
-        console.log(this.props);
+       // console.log(this.props);
         return (
+            <div>
             <div className="navWrapper">
                 <div className="category">
                     <h3>Categories:</h3>
@@ -50,7 +55,7 @@ class Puzzle extends Component {
                         <List>
                             {this.state.rootCategories.map(category => (
                                 <ListItem key={category._id}>
-                                    <a href={"/categories/" + category.id}>
+                                    <a href={"/categories/" + category._id}>
                                         <strong>
                                             {category.name}
                                         </strong>
@@ -69,7 +74,7 @@ class Puzzle extends Component {
                         <List>
                             {this.state.levelCategories.map(category => (
                                 <ListItem key={category._id}>
-                                    <a href={"/categories/" + this.state.currentCatPath + "/" + category.id}>
+                                    <a href={"/categories/" + this.state.currentCatPath + "/" + category._id}>
                                         <strong>
                                             {category.name}
                                         </strong>
@@ -88,7 +93,7 @@ class Puzzle extends Component {
                         <List>
                             {this.state.gamesList.map(game => (
                                 <ListItem key={game._id}>
-                                    <a href={"/gamePage/" + game.id}>
+                                    <a href={"/gameAssets/" + game._id}>
                                         <strong>
                                             {game.name}
                                         </strong>
@@ -101,6 +106,10 @@ class Puzzle extends Component {
                             <h3>No Games to Display</h3>
                         )}
                 </div>
+                </div>
+                <Jumbotron>
+                    This is the End!
+                    </Jumbotron>
             </div>
         )
     }

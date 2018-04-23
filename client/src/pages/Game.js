@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import Piece from "../components/Piece";
 import "../assets/css/game.css";
 import RandomBoard from "../components/RandomBoard";
@@ -7,39 +7,36 @@ import API from "../utils/API";
 
 class Game extends Component {
     state = {
-        // position :gameBoard or randomBoard
         pieces: [],
         maxCol: 0,
         maxRow: 0,
         coordinateArr: [],
-     //   randomCoordinateArr:[],
         score: 0
     };
-    componentDidMount(){
+    componentDidMount() {
         this.loadGamePieces();
     }
-    loadGamePieces=()=>{
-       API.getPiecesByGameId("5adc2a641d99f516accd41b0")  //gameName: Game-2 Nature
-        .then(res =>{ this.setState({pieces:res.data[0].assets});console.log(res.data[0].assets);})
-        .catch(err => console.log(err));
+    loadGamePieces = () => {
+        var gameCat = this.props.match.params.id;
+        console.log("this is props: " + gameCat);
+        API.getPiecesByGameId(this.props.match.params.gameId)
+            .then(res => { this.setState({ pieces: res.data[0].assets }); console.log(res.data[0].assets); })
+            .catch(err => console.log(err));
     };
-    generateRandom(coordinateArr) {
-        var arrLen = coordinateArr.length;
-        return coordinateArr.splice(Math.floor(Math.random() * (arrLen) + 1) - 1, 1)
-        
-       /* var randomCoordinateArr=[];
-        do {
-            var randomCoordinate = coordinateArr.splice(Math.floor(Math.random() * (arrLen) + 1) - 1, 1);
-            if (randomCoordinate.length != 0) {
-                randomCoordinateArr.push(randomCoordinate);
-                randomCoordinateArr.push(randomCoordinate);
+    // shuffle algorithm Also - look into  $sample (aggregation) Mongodb
+    shuffle = (array) => {
+        var copy = [], n = array.length, i;
+        while (n) {
+            i = Math.floor(Math.random() * array.length);
+            if (i in array) {
+                copy.push(array[i]);
+                delete array[i];
+                n--;
             }
         }
-        while (randomCoordinateArr.length <2*arrLen)
-        console.log(randomCoordinateArr);
-        return randomCoordinateArr;*/
-       // this.setState({randomCoordinateArr:randomCoordinateArr});
+        return copy;
     }
+
     handleColRow = (coordinate) => {
         if (!this.state.coordinateArr.includes(coordinate)) {
             this.state.coordinateArr.push(coordinate);
@@ -84,6 +81,7 @@ class Game extends Component {
         });
         this.setState({ score: score });
     }
+
     handleDragOver = (event) => {
         event.preventDefault();
     }
@@ -98,13 +96,15 @@ class Game extends Component {
                 p
             );
         });
-       // console.log(this.state.coordinateArr);
-      //console.log(this.generateRandom(this.state.coordinateArr));
 
         return (
             <div className="container">
                 <div className="row">
-                    <h1 className="text-center">Play:</h1>
+                    {this.state.pieces.length ? (
+                        <h1 className="text-center">Play:</h1>
+                    ) : (
+                            <h1 className="text-center">Game is not available.</h1>
+                        )}
                 </div>
                 <div className="row">
                     <div className="col-sm-2"></div>
@@ -154,11 +154,15 @@ class Game extends Component {
                     <div className="col-sm-1"></div>
                 </div>
                 <div className="row">
-                    <div className="col-sm-4"></div>
+                    <div className="col-sm-4">
+                        <img src="../../../Game-1/Game-1.jpg" width="150px" height="100px" />
+                    </div>
                     <div className="col-sm-4">
                         <h3 className="text-center">Score: {this.state.score}</h3>
                     </div>
-                    <div className="col-sm-4"></div>
+                    <div className="col-sm-4">
+                        <p>Time:</p>
+                    </div>
                 </div>
             </div>
         );

@@ -8,7 +8,7 @@ export default {
         return axios.get("/api/categories/" + parentCatId);
     },
     getGamesInCategory: function (categoryId) {
-        return axios.get("/api/games" + categoryId);
+        return axios.get("/api/games/" + categoryId);
     },
     getPiecesByGameId: function (gameId) {
         return axios.get("/api/gameAssets/" + gameId);

@@ -3,15 +3,6 @@
 const db = require("../models");
 
 module.exports = {
-    // findAllGameAssets: function (req, res) {
-    //     db.GameAssets.find({}).then(dbModel => res.json(dbModel))
-    //         .catch(err => res.json(err));
-    // },
-    // findGameAssetsById: function (req, res) {
-    //     db.GameAssets.findById(req.params.id)
-    //         .then(dbModel => res.json(dbModel))
-    //         .catch(err => res.status(422).json(err));
-    // },
 
     findPiecesByGameId: function (req, res) {
         db.Game.find({ _id: req.params.gameId })

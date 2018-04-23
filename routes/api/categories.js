@@ -5,7 +5,7 @@ const categoriesController = require("../../controllers/categoriesController");
 router.route("/").get(categoriesController.findRootAll);
 
 // "/api/categories/:parentCatName
-router.route("/:parentCatName")
-    .get(categoriesController.findByParentCatName);
+router.route("/:parentCatId")
+    .get(categoriesController.findByParentCatId);
 
 module.exports = router;

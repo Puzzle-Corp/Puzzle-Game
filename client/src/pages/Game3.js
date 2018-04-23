@@ -25,25 +25,25 @@ class Game3 extends React.Component {
         maxCol: 0,
         maxRow: 0,
         coordinateArr: [],
-     //   randomCoordinateArr:[],
+        //   randomCoordinateArr:[],
         score: 0
     };
     generateRandom(coordinateArr) {
         var arrLen = coordinateArr.length;
         return coordinateArr.splice(Math.floor(Math.random() * (arrLen) + 1) - 1, 1)
-        
-       /* var randomCoordinateArr=[];
-        do {
-            var randomCoordinate = coordinateArr.splice(Math.floor(Math.random() * (arrLen) + 1) - 1, 1);
-            if (randomCoordinate.length != 0) {
-                randomCoordinateArr.push(randomCoordinate);
-                randomCoordinateArr.push(randomCoordinate);
-            }
-        }
-        while (randomCoordinateArr.length <2*arrLen)
-        console.log(randomCoordinateArr);
-        return randomCoordinateArr;*/
-       // this.setState({randomCoordinateArr:randomCoordinateArr});
+
+        /* var randomCoordinateArr=[];
+         do {
+             var randomCoordinate = coordinateArr.splice(Math.floor(Math.random() * (arrLen) + 1) - 1, 1);
+             if (randomCoordinate.length != 0) {
+                 randomCoordinateArr.push(randomCoordinate);
+                 randomCoordinateArr.push(randomCoordinate);
+             }
+         }
+         while (randomCoordinateArr.length <2*arrLen)
+         console.log(randomCoordinateArr);
+         return randomCoordinateArr;*/
+        // this.setState({randomCoordinateArr:randomCoordinateArr});
     }
     handleColRow = (coordinate) => {
         if (!this.state.coordinateArr.includes(coordinate)) {
@@ -104,7 +104,7 @@ class Game3 extends React.Component {
             );
         });
         console.log(this.state.coordinateArr);
-      console.log(this.generateRandom(this.state.coordinateArr));
+        console.log(this.generateRandom(this.state.coordinateArr));
 
         return (
             <div className="container">

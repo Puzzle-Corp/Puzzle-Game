@@ -3,7 +3,7 @@ const gamesController = require("../../controllers/gamesController");
 
 
 
-router.route("/:id")
-    .get(gamesController.findGamesByCatName);
+router.route("/:categoryId")
+    .get(gamesController.findGamesByCatId);
 
 module.exports = router;
