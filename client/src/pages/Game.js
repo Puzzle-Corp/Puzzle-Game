@@ -1,105 +1,169 @@
-import React, { Component } from "react";
-import "../assets/css/DragDropApp.css";
+import React,{Component} from "react";
+import Piece from "../components/Piece";
+import "../assets/css/game.css";
+import RandomBoard from "../components/RandomBoard";
+import GameBoard from "../components/GameBoard";
+import API from "../utils/API";
 
-export default class DragDropApp extends Component {
-    // step - 1
-/* 
-pieces:[
-            {id:1,url:"../../assets/images/Game/0-0-1-1.jpg",position:"1-1", bgcolor:"yellow"},
-            {id:2,url:"../../assets/images/Game/0-0-1-1.jpg",position:"1-2", bgcolor:"pink"},
-            {id:3,url:"../../assets/images/Game/0-0-1-1.jpg",position:"1-3", bgcolor:"skyblue"},
-            {id:4,url:"../../assets/images/Game/0-0-1-1.jpg",position:"2-1", bgcolor:"red"},
-            {id:5,url:"../../assets/images/Game/0-0-1-1.jpg",position:"2-2", bgcolor:"yellow"},
-            {id:6,url:"../../assets/images/Game/0-0-1-1.jpg",position:"2-3", bgcolor:"pink"},
-            {id:7,url:"../../assets/images/Game/0-0-1-1.jpg",position:"3-1", bgcolor:"skyblue"},
-            {id:8,url:"../../assets/images/Game/0-0-1-1.jpg",position:"3-2", bgcolor:"red"},
-            {id:9,url:"../../assets/images/Game/0-0-1-1.jpg",position:"3-3", bgcolor:"yellow"},
-            {id:10,url:"../../assets/images/Game/0-0-1-1.jpg",position:"4-1", bgcolor:"pink"},
-            {id:11,url:"../../assets/images/Game/0-0-1-1.jpg",position:"4-2", bgcolor:"skyblue"},
-            {id:12,url:"../../assets/images/Game/0-0-1-1.jpg",position:"4-3", bgcolor:"red"},
-        ]
-*/
-
-
-    state={
-        items:[
-            {id:1,name:"item 1 ",position:"store", bgcolor:"yellow"},
-            {id:2,name:"item 2 ",position:"store", bgcolor:"pink"},
-            {id:3,name:"item 3 ",position:"store2", bgcolor:"skyblue"},
-            {id:4,name:"item 4 ",position:"cart", bgcolor:"red"},
-        ]
+class Game extends Component {
+    state = {
+        // position :gameBoard or randomBoard
+        pieces: [],
+        maxCol: 0,
+        maxRow: 0,
+        coordinateArr: [],
+     //   randomCoordinateArr:[],
+        score: 0
+    };
+    componentDidMount(){
+        this.loadGamePieces();
     }
-    //step to create event handlers
-    onDragStart=(event,id) =>{
-        console.log("dragstart:" ,id);
-        event.dataTransfer.setData("id",id);
-    }
-    onDragOver=(event) =>{
-        event.preventDefault();
-      //  console.log("on drag over");
-    }
-    onDrop=(event,pos) =>{
-        var key=event.dataTransfer.getData("id");
-        //console.log("key:"+key);
-        var items=this.state.items.filter((item) =>{
-          //  console.log(pos+" ---- "+key);
-            if(item.id==key){
-                item.position=pos;
-                console.log(item);
+    loadGamePieces=()=>{
+       API.getPiecesByGameId("5adc2a641d99f516accd41b0")  //gameName: Game-2 Nature
+        .then(res =>{ this.setState({pieces:res.data[0].assets});console.log(res.data[0].assets);})
+        .catch(err => console.log(err));
+    };
+    generateRandom(coordinateArr) {
+        var arrLen = coordinateArr.length;
+        return coordinateArr.splice(Math.floor(Math.random() * (arrLen) + 1) - 1, 1)
+        
+       /* var randomCoordinateArr=[];
+        do {
+            var randomCoordinate = coordinateArr.splice(Math.floor(Math.random() * (arrLen) + 1) - 1, 1);
+            if (randomCoordinate.length != 0) {
+                randomCoordinateArr.push(randomCoordinate);
+                randomCoordinateArr.push(randomCoordinate);
             }
-           // console.log(item);
-            return item;
-        });
-        this.setState({
-                ...this.state,items
-        });
-    }
-    render() {
-        //step 2
-        var items={ //squares:Array(4).fill(null)
-            store:[],
-            cart:[],
-           store2:[]
         }
+        while (randomCoordinateArr.length <2*arrLen)
+        console.log(randomCoordinateArr);
+        return randomCoordinateArr;*/
+       // this.setState({randomCoordinateArr:randomCoordinateArr});
+    }
+    handleColRow = (coordinate) => {
+        if (!this.state.coordinateArr.includes(coordinate)) {
+            this.state.coordinateArr.push(coordinate);
+        }
+        var splitArr = coordinate.toString().trim().split("-");
+        var maxCol = parseInt(splitArr[1]) + 1;
+        if (this.state.maxCol < maxCol) {
+            this.setState({
+                maxCol: maxCol
+            });
+        }
+        var maxRow = parseInt(splitArr[0]) + 1;
+        if (this.state.maxRow < maxRow) {
+            this.setState({
+                maxRow: maxRow
+            });
+        }
+        return splitArr;
+    }
+    handleDragStart = (event, coordinate) => {
+        console.log(coordinate);
+        event.dataTransfer.setData("text/plain", coordinate);
+    }
 
-        //step 3 is state:
-        this.state.items.forEach((item) => {
-            items[item.position].push(
-                <div key={item.id} className="draggable"
-                onDragStart={(event)=>this.onDragStart(event,item.id)}
-                // draggable attribute cause to be able drag it in browser
-                 draggable
-                 style={{backgroundColor:item.bgcolor}}
-                 >
-                 {item.id}
-                 </div>
+    handleDrop = (event, pos) => {
+        event.preventDefault();
+        var key = event.dataTransfer.getData("text");
+        var score = this.state.score;
+        var flag = false;
+        var pieces = this.state.pieces.filter((p) => {
+            if (p.coordinate === key && key === event.target.id) {
+                p.isPlaced = 1;
+                score++;
+                flag = true;
+            }
+            console.log("score: " + score);
+            return p;
+        });
+        if (!flag) { score--; }
+        this.setState({
+            ...this.state, pieces
+        });
+        this.setState({ score: score });
+    }
+    handleDragOver = (event) => {
+        event.preventDefault();
+    }
+
+    render() {
+        var pieces = {
+            randomBoard: [],
+            gameBoard: []
+        }
+        this.state.pieces.forEach((p) => {
+            pieces[p.position].push(
+                p
             );
         });
+       // console.log(this.state.coordinateArr);
+      //console.log(this.generateRandom(this.state.coordinateArr));
 
         return (
-            <div className="container-drag">
-               <h1 className="header"> Drag & Drop App</h1>
-                <div className="store"
-                    onDragOver={(e)=>this.onDragOver(e)}
-                    onDrop={(e)=>{this.onDrop(e,"store")}}>
-                    <span className="store-header">STORE</span>
-                        {items.store} 
+            <div className="container">
+                <div className="row">
+                    <h1 className="text-center">Play:</h1>
                 </div>
-                {/* ok I have to find a way to generate store to  n store */}
-                <div className="store"
-                    onDragOver={(e)=>this.onDragOver(e)}
-                    onDrop={(e)=>{this.onDrop(e,"store2")}}>
-                    <span className="store-header">STORE2</span>
-                        {items.store2} 
-                </div>
+                <div className="row">
+                    <div className="col-sm-2"></div>
+                    <div className="col-sm-4 text-center">
+                        <RandomBoard
+                            handleDragOver={this.handleDragOver}
+                            handleDrop={(e) => { this.handleDrop(e, "randomBoard") }}
+                            style={{ gridTemplateColumns: "repeat(" + (parseInt(this.state.maxCol) + 1) + ", 1fr)" }}
+                        >
+                            {pieces.randomBoard.map(p =>
+                                <Piece
 
-                <div className="droppable"
-                 onDragOver={(e) => this.onDragOver(e)}
-                 onDrop={(e)=>this.onDrop(e,"cart")}>
-                <span className="store-header">CART</span>
-                    {items.cart}
+                                    key={p.id}
+                                    id={p.id}
+                                    url={p.isPlaced === 0 ? p.url : null}
+                                    handleDragStart={(event) => this.handleDragStart(event, p.coordinate)}
+                                    coordinate={p.coordinate}
+                                    draggable
+                                    style={{ gridColumn: parseInt(this.handleColRow(p.coordinate)[0]) + 1, gridRow: parseInt(this.handleColRow(p.coordinate)[1]) + 1 }}
+                                    className={"piece"}
+                                />
+                            )}
+
+                        </RandomBoard>
+                    </div>
+                    <div className="col-sm-1"></div>
+                    <div className="col-sm-4 text-center">
+                        <GameBoard
+                            handleDragOver={this.handleDragOver}
+                            handleDrop={(e) => { this.handleDrop(e, "gameBoard") }}
+                            style={{ gridTemplateColumns: "repeat(" + (parseInt(this.state.maxCol) + 1) + ", 1fr)" }}
+                        >
+                            {pieces.randomBoard.map(p =>
+                                <Piece
+                                    key={p.id}
+                                    id={p.id}
+                                    url={p.isPlaced === 1 ? p.url : null}
+                                    handleDragStart={(event) => this.handleDragStart(event, p.coordinate)}
+                                    coordinate={p.coordinate}
+                                    draggable
+                                    style={{ gridColumn: parseInt(this.handleColRow(p.coordinate)[1]) + 1, gridRow: parseInt(this.handleColRow(p.coordinate)[0]) + 1 }}
+                                    className={"piece"}
+                                />
+                            )}
+                        </GameBoard>
+                    </div>
+                    <div className="col-sm-1"></div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-4"></div>
+                    <div className="col-sm-4">
+                        <h3 className="text-center">Score: {this.state.score}</h3>
+                    </div>
+                    <div className="col-sm-4"></div>
                 </div>
             </div>
         );
     }
+
 }
+
+export default Game;

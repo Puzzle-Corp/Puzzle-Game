@@ -1,10 +1,16 @@
 import axios from "axios";
 
 export default {
-  getCategories:function(){
-      return axios.get("/api/categories");
-  },
-  getCategoriesLevel:function(parentCatName){
-      return axios.get("/api/categories/"+parentCatName);
-  }
+    getCategories: function () {
+        return axios.get("/api/categories");
+    },
+    getCategoriesByParent: function (parentCatId) {
+        return axios.get("/api/categories/" + parentCatId);
+    },
+    getGamesInCategory: function (categoryId) {
+        return axios.get("/api/games" + categoryId);
+    },
+    getPiecesByGameId: function (gameId) {
+        return axios.get("/api/gameAssets/" + gameId);
+    }
 };

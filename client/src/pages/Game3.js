@@ -109,7 +109,7 @@ class Game3 extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <h1 className="text-center">Let's play:</h1>
+                    <h1 className="text-center">Play</h1>
                 </div>
                 <div className="row">
                     <div className="col-sm-2"></div>

@@ -40,15 +40,15 @@
 }
 
 .boardWrapper > div {
-  border: 1px dashed rgb(233,171,88);
-  background-color: rgba(233,171,88,.5);
+  border: 1px dashed rgb(212, 212, 212);
+  background-color:rgb(253, 249, 249);
   padding: 0;
-  color: #d9480f;
+  color:white;
 }
 .boardWrapper {
   display: grid;
   grid-gap: 0px;
-  grid-auto-rows: minmax(30px, auto);
+  grid-auto-rows: minmax(100px, auto);
 }
 .leftS{
   float:left;

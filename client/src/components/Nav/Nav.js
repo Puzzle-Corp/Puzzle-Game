@@ -7,25 +7,17 @@ import API from "../../utils/API"
 class Nav extends Component {
   state = {
     rootCategories: [],
-    levelCategories: []
   };
   componentDidMount() {
     this.loadCategories();
-    this.loadLevelCategories();
   }
   loadCategories = () => {
     API.getCategories()
       .then(res => this.setState({ rootCategories: res.data }))
       .catch(err => console.log(err));
   }
-
-  loadLevelCategories = () => {
-    API.getCategoriesLevel("Jigsaw Puzzle")
-      .then(res => this.setState({ levelCategories: res.data }))
-      .catch(err => console.log(err));
-  }
-
   render() {
+    //  console.log(this.state.rootCategories);
     return (
       <nav className="navbar navbar-inverse">
         <div className="container-fluid">
@@ -36,7 +28,7 @@ class Nav extends Component {
               <span className="icon-bar"></span>
             </button>
             <a href="/" className="navbar-brand">
-              <p className="logo">Puzzles</p>
+            <i className="fas fa-puzzle-piece"></i>
             </a>
           </div>
 
@@ -44,12 +36,12 @@ class Nav extends Component {
             <ul className="nav navbar-nav">
               <li className="dropdown" >
                 <a href="*" className={window.location.pathname === "*" ? "active" : ""}
-                 data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   Puzzles <span className="caret"></span></a>
                 <ul className="dropdown-menu" >
                   {this.state.rootCategories.map(category => (
                     <ListItem key={category._id}>
-                      <a href={"/categories/" + category._id}>
+                      <a href={"/categories/" + category.id}>
                         <strong>
                           {category.name}
                         </strong>
@@ -70,7 +62,7 @@ class Nav extends Component {
               <li className={window.location.pathname === "/game" ? "active" : ""}>
                 <Link to="/game">Game</Link>
               </li>
-              
+
               <li className={window.location.pathname === "/game3" ? "active" : ""}>
                 <Link to="/game3">Game3</Link>
               </li>

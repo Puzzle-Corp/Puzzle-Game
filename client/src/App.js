@@ -16,6 +16,7 @@ const App = () => (
         <Wrapper>
           {/* <Route exact path="/" component={Home} />*/}
           <Route exact path="/categories/:id" component={Puzzle} />
+          <Route exact path="/categories/:_id/:id" component={Puzzle} />
           <Route exact path="/Game" component={Game} />
           <Route exact path="/Game3" component={Game3} />
         </Wrapper>
