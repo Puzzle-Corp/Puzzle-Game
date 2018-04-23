@@ -126,7 +126,7 @@ gameSeed.forEach(function (p) {
 
 
 //Step 3
-
+/*
 const gameAssetsSeed = [
   {
     gameName: "Duck",
@@ -269,3 +269,4 @@ gameAssetsSeed.forEach(function (p) {
     });
   });
 });
+*/
