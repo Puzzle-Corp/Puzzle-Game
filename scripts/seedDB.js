@@ -13,7 +13,7 @@ mongoose.connect(
 
 
 // Step 1 - 1
-
+/*
 const categorySeed = [
   {
     name: "Jigsaw Puzzle",
@@ -40,22 +40,22 @@ db.Category
     console.error(err);
     process.exit(1);
   }); 
+*/
 
 
-/*
 // Step 1 - 2
 var ObjectId = mongoose.Types.ObjectId,
  categorySeed = [
   //Jigsaw Puzzle
   {
     name: "Animals",
-    parentCatId: ObjectId("5add33011a64a767d8e5c35c"),
+    parentCatId: ObjectId("5ade2f442f5ec8001e11e080"),
     catLevel: 1,
     date: new Date(Date.now()),
   },
   {
     name: "Nature",
-    parentCatId: ObjectId("5add33011a64a767d8e5c35c"),
+    parentCatId: ObjectId("5ade2f442f5ec8001e11e080"),
     catLevel: 1,
     date: new Date(Date.now()),
   },
@@ -67,7 +67,7 @@ var ObjectId = mongoose.Types.ObjectId,
   });
 
 
-*/
+
 
 
 //Step 2
