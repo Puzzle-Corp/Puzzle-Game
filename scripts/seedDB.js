@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const db = require("../models");
+const db = require("./models");
 mongoose.Promise = global.Promise;
 
 // This file empties the category collection and inserts the category below
