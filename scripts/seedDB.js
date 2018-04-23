@@ -73,7 +73,7 @@ var ObjectId = mongoose.Types.ObjectId,
 
 
 //Step 2
-
+/*
 const gameSeed = [
   {
     parentCatName: "Jigsaw Puzzle",
@@ -122,11 +122,11 @@ gameSeed.forEach(function (p) {
   });
 });
 
-
+*/
 
 
 //Step 3
-/*
+
 const gameAssetsSeed = [
   {
     gameName: "Duck",
@@ -269,4 +269,3 @@ gameAssetsSeed.forEach(function (p) {
     });
   });
 });
-*/
