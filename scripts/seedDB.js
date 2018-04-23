@@ -13,7 +13,7 @@ mongoose.connect(
 
 
 // Step 1 - 1
-/*
+
 const categorySeed = [
   {
     name: "Jigsaw Puzzle",
@@ -41,7 +41,7 @@ db.Category
     process.exit(1);
   }); 
 
-*/
+
 /*
 // Step 1 - 2
 var ObjectId = mongoose.Types.ObjectId,
@@ -124,32 +124,32 @@ gameSeed.forEach(function (p) {
 
 
 //Step 3
-
+/*
 const gameAssetsSeed = [
   {
     gameName: "Duck",
     assetList: [
       {
         position: "randomBoard",
-        url: "./Game-1/0-0.jpg",
+        url: "../Game-1/0-0.jpg",
         coordinate: "0-0",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-1/0-1.jpg",
+        url: "../Game-1/0-1.jpg",
         coordinate: "0-1",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-1/1-0.jpg",
+        url: "../Game-1/1-0.jpg",
         coordinate: "1-0",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-1/1-1.jpg",
+        url: "../Game-1/1-1.jpg",
         coordinate: "1-1",
         isPlaced: 0,
       },
@@ -160,97 +160,97 @@ const gameAssetsSeed = [
     assetList: [
       {
         position: "randomBoard",
-        url: "./Game-2/0-0.jpg",
+        url: "../Game-2/0-0.jpg",
         coordinate: "0-0",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/0-1.jpg",
+        url: "../Game-2/0-1.jpg",
         coordinate: "0-1",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/0-2.jpg",
+        url: "../Game-2/0-2.jpg",
         coordinate: "0-2",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/0-3.jpg",
+        url: "../Game-2/0-3.jpg",
         coordinate: "0-3",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/1-0.jpg",
+        url: "../Game-2/1-0.jpg",
         coordinate: "1-0",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/1-1.jpg",
+        url: "../Game-2/1-1.jpg",
         coordinate: "1-1",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/1-2.jpg",
+        url: "../Game-2/1-2.jpg",
         coordinate: "1-2",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/1-3.jpg",
+        url: "../Game-2/1-3.jpg",
         coordinate: "1-3",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/2-0.jpg",
+        url: "../Game-2/2-0.jpg",
         coordinate: "2-0",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/2-1.jpg",
+        url: "../Game-2/2-1.jpg",
         coordinate: "2-1",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/2-2.jpg",
+        url: "../Game-2/2-2.jpg",
         coordinate: "2-2",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/2-3.jpg",
+        url: "../Game-2/2-3.jpg",
         coordinate: "2-3",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/3-0.jpg",
+        url: "../Game-2/3-0.jpg",
         coordinate: "3-0",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/3-1.jpg",
+        url: "../Game-2/3-1.jpg",
         coordinate: "3-1",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/3-2.jpg",
+        url: "../Game-2/3-2.jpg",
         coordinate: "3-2",
         isPlaced: 0,
       },
       {
         position: "randomBoard",
-        url: "./Game-2/3-3.jpg",
+        url: "../Game-2/3-3.jpg",
         coordinate: "3-3",
         isPlaced: 0,
       },
@@ -267,3 +267,4 @@ gameAssetsSeed.forEach(function (p) {
     });
   });
 });
+*/
