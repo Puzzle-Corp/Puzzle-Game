@@ -44,6 +44,8 @@ db.Category
 
 
 // Step 1 - 2
+
+/*
 var ObjectId = mongoose.Types.ObjectId,
  categorySeed = [
   //Jigsaw Puzzle
@@ -66,12 +68,12 @@ var ObjectId = mongoose.Types.ObjectId,
 
   });
 
-
+*/
 
 
 
 //Step 2
-/*
+
 const gameSeed = [
   {
     parentCatName: "Jigsaw Puzzle",
@@ -120,7 +122,7 @@ gameSeed.forEach(function (p) {
   });
 });
 
-*/
+
 
 
 //Step 3
