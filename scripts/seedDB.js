@@ -270,7 +270,7 @@ gameAssetsSeed.forEach(function (p) {
   });
 });
 */
-/*
+
 const gameAssetsSeed = [
   {
     gameName: "Tiger",
@@ -480,8 +480,8 @@ gameAssetsSeed.forEach(function (p) {
     });
   });
 });
-*/
 
+/*
 const gameAssetsSeed = [
   {
     gameName: "Wild",
@@ -595,3 +595,4 @@ gameAssetsSeed.forEach(function (p) {
     });
   });
 });
+*/
