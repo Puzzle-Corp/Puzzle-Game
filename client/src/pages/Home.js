@@ -7,9 +7,17 @@ class Home extends Component {
         return (
             <div>
                 <Jumbotron>
-                    <h3>Puzzle corp.</h3>
-                    </Jumbotron>
-            
+                    <img src="../AboutUs/ENdesktop.jpg" className="Img" />
+                </Jumbotron>
+                <div  style={{ fontFamily: "Indie Flower, cursive" }}>
+                <h1 className="text-center">
+                    We deliver the best free games on web or mobile to audiences around the world.
+                </h1>
+                <ul>
+                    <li><h3>Advertise With Us</h3></li>
+                    <li><h3> Play Our Games</h3></li>
+                </ul>
+                </div>
             </div>
         )
     }

@@ -58,3 +58,9 @@
     grid-column: 3;
     grid-row: 1 ;
   }
+  .Img {
+    border-radius: 10px;
+    border: 1px solid gray;
+    margin: auto;
+  }
+  .top-Img { margin-top:30px; }
