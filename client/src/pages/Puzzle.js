@@ -108,19 +108,19 @@ class Puzzle extends Component {
                     </div>
                 </div>
                 <div className="row top-Img">
-                    <div className="col-sm-3"  style={{ fontFamily: "Indie Flower, cursive" }}>
-                    <h3>In our documentation you’ll find all you need to get started to integrate our API.</h3>
-                    <hr/>
-                    <h3>Give our games a try and find out which ones best suit your flavor!</h3>
-                    <hr/>
-                    <h3>Visit our portals and discover your game!</h3>
-                    <hr/>
-                    <h3>Check out this section to get a complete overview of our channels.</h3>
+                    <div className="col-sm-3" style={{ fontFamily: "Indie Flower, cursive" }}>
+                        <h3>In our documentation you’ll find all you need to get started to integrate our API.</h3>
+                        <hr />
+                        <h3>Give our games a try and find out which ones best suit your flavor!</h3>
+                        <hr />
+                        <h3>Visit our portals and discover your game!</h3>
+                        <hr />
+                        <h3>Check out this section to get a complete overview of our channels.</h3>
                     </div>
                     <div className="col-sm-9">
                         <img src="/AboutUs/Puzzle.jpg" className="Img" />
                     </div>
-                    
+
                 </div>
             </div>
         )

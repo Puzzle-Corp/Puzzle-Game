@@ -179,6 +179,7 @@ class Game extends Component {
                     <div className="col-sm-1"></div>
                 </div>
                 <br/><br/>
+                {this.state.pieces.length ? (
                 <div className="row">
                     <div className="col-sm-4">
                         <img className="Img" src={"../../../"+this.state.gameName+"/"+this.state.gameName+".jpg"} width="150px" height="100px" />
@@ -191,6 +192,9 @@ class Game extends Component {
                     </div>
                     
                 </div>
+                 ) : (
+                    <div></div>
+                )}
             </div>
         );
     }
