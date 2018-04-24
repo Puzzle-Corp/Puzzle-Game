@@ -23,7 +23,7 @@ const App = () => (
           <Route exact path="/games/:id" component={Puzzle} />
           <Route exact path="/gameAssets/:gameId" component={Game} />
           <Route exact path="/about" component={AboutUs} />
-          <Route exact path="/contactus" component={ContactUs} />
+          <Route exact path="/contact" component={ContactUs} />
 
         </Wrapper>
       </div>
