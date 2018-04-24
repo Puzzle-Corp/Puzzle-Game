@@ -16,38 +16,38 @@ class ContactUs extends Component {
         const name = event.target.name;
         // Updating the input's state
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
+    };
 
     handleFormSubmit = event => {
         event.preventDefault();
         if (!this.state.name && !this.state.email && !this.state.message) {
-            alert("Fill out your name, email and your message please!");  
+            alert("Fill out your name, email and your message please!");
         }
         if (this.state.name && this.state.email && this.state.message) {
-          console.log("message: "+this.state.message);
+            console.log("message: " + this.state.message);
             API.saveContact({
-            name: this.state.name,
-            email: this.state.email,
-            message: this.state.massage
-          })
-            .then(() => {this.setState({ redirect: true });console.log("submitted.");})
-            .catch(err => console.log(err));
+                name: this.state.name,
+                email: this.state.email,
+                message: this.state.massage
+            })
+                .then(() => { this.setState({ redirect: true }); console.log("submitted."); })
+                .catch(err => console.log(err));
         }
-      };
+    };
 
     render() {
         const { redirect } = this.state;
 
-     if (redirect) {
-       return <Redirect to="/Home"/>;
-     }
+        if (redirect) {
+            return <Redirect to="/Home" />;
+        }
         return (
             <div className="container">
-                <h1 className="text-center" style={{fontFamily: "Indie Flower, cursive"}}>Contact Us: </h1>
+                <h1 className="text-center" style={{ fontFamily: "Indie Flower, cursive" }}>Contact Us: </h1>
                 <form className="form-group">
-                <div className="col-sm-2"></div>
+                    <div className="col-sm-2"></div>
                     <div className="col-sm-8">
                         <label htmlFor="name"> Name:</label>
                         <input
@@ -59,7 +59,7 @@ class ContactUs extends Component {
                             required="required"
                             placeholder="John Smith"
                         />
-                         <label htmlFor="email"> Email:</label>
+                        <label htmlFor="email"> Email:</label>
                         <input
                             value={this.state.email}
                             name="email"
@@ -69,7 +69,7 @@ class ContactUs extends Component {
                             required="required"
                             placeholder="example@company.com"
                         />
-                         <label htmlFor="message"> Message:</label>
+                        <label htmlFor="message"> Message:</label>
                         <textarea
                             value={this.state.message}
                             name="message"
@@ -80,10 +80,10 @@ class ContactUs extends Component {
                             placeholder="Your message:"
                             rows="10"
                         />
-                        <br/>
+                        <br />
                         <div className="text-center">
-                        <button className="btn btn-info btn-lg text-center" 
-                        onClick={this.handleFormSubmit}>Submit</button>
+                            <button className="btn btn-info btn-lg text-center"
+                                onClick={this.handleFormSubmit}>Submit</button>
                         </div>
                     </div>
                     <div className="col-sm-2"></div>
