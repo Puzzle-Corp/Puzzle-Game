@@ -11,7 +11,8 @@ class Game extends Component {
         maxCol: 0,
         maxRow: 0,
         coordinateArr: [],
-        score: 0
+        score: 0,
+        gameName:""
     };
     componentDidMount() {
         this.loadGamePieces();
@@ -20,7 +21,8 @@ class Game extends Component {
         var gameCat = this.props.match.params.id;
         console.log("this is props: " + gameCat);
         API.getPiecesByGameId(this.props.match.params.gameId)
-            .then(res => { this.setState({ pieces: res.data[0].assets }); console.log(res.data[0].assets); })
+            .then(res => { this.setState({ pieces: res.data[0].assets,gameName:res.data[0].name }); //console.log(res.data[0].name);
+         })
             .catch(err => console.log(err));
     };
     // shuffle algorithm Also - look into  $sample (aggregation) Mongodb
@@ -56,11 +58,13 @@ class Game extends Component {
         }
         return splitArr;
     }
+    //Drag Start event 1
     handleDragStart = (event, coordinate) => {
         console.log(coordinate);
         event.dataTransfer.setData("text/plain", coordinate);
     }
 
+    // Drop event 3 last part
     handleDrop = (event, pos) => {
         event.preventDefault();
         var key = event.dataTransfer.getData("text");
@@ -81,7 +85,7 @@ class Game extends Component {
         });
         this.setState({ score: score });
     }
-
+    // Drag Over event 2
     handleDragOver = (event) => {
         event.preventDefault();
     }
@@ -97,11 +101,32 @@ class Game extends Component {
             );
         });
 
+
+         pieces.gameBoard.push.apply(pieces.gameBoard, pieces.randomBoard);
+         pieces.randomBoard= this.shuffle(pieces.randomBoard);
+
+        // var products=pieces.randomBoard;
+        // var p=0;
+        // var flag=0;
+        //  for (let i = 0; i < this.state.maxCol; i++) {
+        //     // let product = products[i];
+        //    //console.log(product);
+           
+        //      for (let j = 0; j < this.state.maxRow; j++) {
+        //        let size = product[(1+j)-1];
+        //        console.log(size);
+        //        flag=j;
+        //      }
+        //      p=flag+1
+        //   }
+
+        // console.log(products);
+      //  console.log(pieces.gameBoard);        
         return (
             <div className="container">
                 <div className="row">
                     {this.state.pieces.length ? (
-                        <h1 className="text-center">Play:</h1>
+                        <h1 className="text-center">Play:{this.state.gameName}</h1>
                     ) : (
                             <h1 className="text-center">Game is not available.</h1>
                         )}
@@ -137,7 +162,7 @@ class Game extends Component {
                             handleDrop={(e) => { this.handleDrop(e, "gameBoard") }}
                             style={{ gridTemplateColumns: "repeat(" + (parseInt(this.state.maxCol) + 1) + ", 1fr)" }}
                         >
-                            {pieces.randomBoard.map(p =>
+                            {pieces.gameBoard.map(p =>
                                 <Piece
                                     key={p.id}
                                     id={p.id}
@@ -153,16 +178,18 @@ class Game extends Component {
                     </div>
                     <div className="col-sm-1"></div>
                 </div>
+                <br/><br/>
                 <div className="row">
                     <div className="col-sm-4">
-                        <img src="../../../Game-1/Game-1.jpg" width="150px" height="100px" />
+                        <img className="Img" src={"../../../"+this.state.gameName+"/"+this.state.gameName+".jpg"} width="150px" height="100px" />
                     </div>
                     <div className="col-sm-4">
-                        <h3 className="text-center">Score: {this.state.score}</h3>
+                        
                     </div>
                     <div className="col-sm-4">
-                        <p>Time:</p>
+                        <h3 >Score:<span className="score"> {this.state.score}</span></h3>
                     </div>
+                    
                 </div>
             </div>
         );

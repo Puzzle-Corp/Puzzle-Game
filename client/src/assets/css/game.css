@@ -62,5 +62,11 @@
   border: 1px solid gray;
  margin: auto;
 }
+.score{
+  width: 200px;
+  height: 150px;
+  border: 2px solid red;
+  border-radius: 7px;
+}
 
 
