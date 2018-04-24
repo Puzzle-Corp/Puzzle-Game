@@ -12,5 +12,8 @@ export default {
     },
     getPiecesByGameId: function (gameId) {
         return axios.get("/api/gameAssets/" + gameId);
-    }
+    },
+    saveContact: function(contactPage) {
+        return axios.post("/api/contactus", contactPage);
+      }
 };
