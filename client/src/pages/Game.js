@@ -60,7 +60,7 @@ class Game extends Component {
     }
     //Drag Start event 1
     handleDragStart = (event, coordinate) => {
-        console.log(coordinate);
+       // console.log(coordinate);
         event.dataTransfer.setData("text/plain", coordinate);
     }
 
@@ -102,26 +102,29 @@ class Game extends Component {
         });
 
 
-         pieces.gameBoard.push.apply(pieces.gameBoard, pieces.randomBoard);
-         pieces.randomBoard= this.shuffle(pieces.randomBoard);
+        pieces.gameBoard.push.apply(pieces.gameBoard, pieces.randomBoard);
+        pieces.randomBoard = this.shuffle(pieces.randomBoard);
 
-        // var products=pieces.randomBoard;
-        // var p=0;
-        // var flag=0;
-        //  for (let i = 0; i < this.state.maxCol; i++) {
-        //     // let product = products[i];
-        //    //console.log(product);
-           
-        //      for (let j = 0; j < this.state.maxRow; j++) {
-        //        let size = product[(1+j)-1];
-        //        console.log(size);
-        //        flag=j;
-        //      }
-        //      p=flag+1
-        //   }
+       /* var products = pieces.randomBoard;
+        var index = 0;
+        var flag = 0;
+        for (let i = 0; i < this.state.maxCol; i++) {
 
-        // console.log(products);
-      //  console.log(pieces.gameBoard);        
+            var temp = 0;
+            for (let j = 0; j < this.state.maxRow; j++) {
+                index = i + j + flag;
+
+                console.log("index: "+index);
+                console.log(products[index]);
+                if (i === 0) { temp = j }
+                else {
+                    temp = j * i;
+                }
+            }
+            flag = temp;
+        }
+*/
+                
         return (
             <div className="container">
                 <div className="row">
@@ -139,6 +142,13 @@ class Game extends Component {
                             handleDrop={(e) => { this.handleDrop(e, "randomBoard") }}
                             style={{ gridTemplateColumns: "repeat(" + (parseInt(this.state.maxCol) + 1) + ", 1fr)" }}
                         >
+
+                        {}
+
+
+
+
+
                             {pieces.randomBoard.map(p =>
                                 <Piece
 
