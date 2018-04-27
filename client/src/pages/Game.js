@@ -12,7 +12,7 @@ class Game extends Component {
         maxRow: 0,
         coordinateArr: [],
         score: 0,
-        gameName:""
+        gameName: ""
     };
     componentDidMount() {
         this.loadGamePieces();
@@ -21,11 +21,17 @@ class Game extends Component {
         var gameCat = this.props.match.params.id;
         console.log("this is props: " + gameCat);
         API.getPiecesByGameId(this.props.match.params.gameId)
-            .then(res => { this.setState({ pieces: res.data[0].assets,gameName:res.data[0].name }); //console.log(res.data[0].name);
-         })
+            .then(res => {
+                //Randomizing after loading by shuffle function
+                this.setState({ pieces: this.shuffle(res.data[0].assets), gameName: res.data[0].name });
+                this.state.pieces.map(p => {
+                    this.handleColRow(p.coordinate);
+                });
+            })
             .catch(err => console.log(err));
+
     };
-    // shuffle algorithm Also - look into  $sample (aggregation) Mongodb
+    // shuffle algorithm 
     shuffle = (array) => {
         var copy = [], n = array.length, i;
         while (n) {
@@ -38,7 +44,24 @@ class Game extends Component {
         }
         return copy;
     }
-
+    // piece: {id: 1, position: "randomBoard", url: "./Game-1/0-0.jpg", coordinate: "0-0", isPlaced: 0}
+    findColRowRandom = (piecesRandomBoard, piece) => {
+        var indexOfPiece = piecesRandomBoard.indexOf(piece);
+        var x_y = [0, 0];
+        if (indexOfPiece === -1) {
+            console.log("Error. Something is wrong.")
+            return [0, 0];
+        }
+        else {
+            x_y[0] = indexOfPiece % this.state.maxCol;
+            x_y[1] = indexOfPiece / this.state.maxCol;
+        }
+        return x_y;
+    }
+    findColRowGame=(coordinate) =>{
+        var splitArr = coordinate.toString().trim().split("-");
+        return splitArr;
+    }
     handleColRow = (coordinate) => {
         if (!this.state.coordinateArr.includes(coordinate)) {
             this.state.coordinateArr.push(coordinate);
@@ -56,15 +79,14 @@ class Game extends Component {
                 maxRow: maxRow
             });
         }
-        return splitArr;
     }
     //Drag Start event 1
     handleDragStart = (event, coordinate) => {
-       // console.log(coordinate);
+        // console.log(coordinate);
         event.dataTransfer.setData("text/plain", coordinate);
     }
 
-    // Drop event 3 last part
+    // Drop event 3 
     handleDrop = (event, pos) => {
         event.preventDefault();
         var key = event.dataTransfer.getData("text");
@@ -76,7 +98,7 @@ class Game extends Component {
                 score++;
                 flag = true;
             }
-            console.log("score: " + score);
+            //console.log("score: " + score);
             return p;
         });
         if (!flag) { score--; }
@@ -90,6 +112,8 @@ class Game extends Component {
         event.preventDefault();
     }
 
+
+
     render() {
         var pieces = {
             randomBoard: [],
@@ -100,31 +124,8 @@ class Game extends Component {
                 p
             );
         });
-
-
         pieces.gameBoard.push.apply(pieces.gameBoard, pieces.randomBoard);
-        pieces.randomBoard = this.shuffle(pieces.randomBoard);
 
-       /* var products = pieces.randomBoard;
-        var index = 0;
-        var flag = 0;
-        for (let i = 0; i < this.state.maxCol; i++) {
-
-            var temp = 0;
-            for (let j = 0; j < this.state.maxRow; j++) {
-                index = i + j + flag;
-
-                console.log("index: "+index);
-                console.log(products[index]);
-                if (i === 0) { temp = j }
-                else {
-                    temp = j * i;
-                }
-            }
-            flag = temp;
-        }
-*/
-                
         return (
             <div className="container">
                 <div className="row">
@@ -142,12 +143,7 @@ class Game extends Component {
                             handleDrop={(e) => { this.handleDrop(e, "randomBoard") }}
                             style={{ gridTemplateColumns: "repeat(" + (parseInt(this.state.maxCol) + 1) + ", 1fr)" }}
                         >
-
-                        {}
-
-
-
-
+                            {}
 
                             {pieces.randomBoard.map(p =>
                                 <Piece
@@ -158,7 +154,7 @@ class Game extends Component {
                                     handleDragStart={(event) => this.handleDragStart(event, p.coordinate)}
                                     coordinate={p.coordinate}
                                     draggable
-                                    style={{ gridColumn: parseInt(this.handleColRow(p.coordinate)[0]) + 1, gridRow: parseInt(this.handleColRow(p.coordinate)[1]) + 1 }}
+                                    style={{ gridColumn: parseInt(this.findColRowRandom(pieces.randomBoard, p)[0]) + 1, gridRow: parseInt(this.findColRowRandom(pieces.randomBoard, p)[1]) + 1 }}
                                     className={"piece"}
                                 />
                             )}
@@ -180,7 +176,7 @@ class Game extends Component {
                                     handleDragStart={(event) => this.handleDragStart(event, p.coordinate)}
                                     coordinate={p.coordinate}
                                     draggable
-                                    style={{ gridColumn: parseInt(this.handleColRow(p.coordinate)[1]) + 1, gridRow: parseInt(this.handleColRow(p.coordinate)[0]) + 1 }}
+                                    style={{ gridColumn: parseInt(this.findColRowGame(p.coordinate)[1]) + 1, gridRow: parseInt(this.findColRowGame(p.coordinate)[0]) + 1 }}
                                     className={"piece"}
                                 />
                             )}
@@ -188,23 +184,23 @@ class Game extends Component {
                     </div>
                     <div className="col-sm-1"></div>
                 </div>
-                <br/><br/>
+                <br /><br />
                 {this.state.pieces.length ? (
-                <div className="row">
-                    <div className="col-sm-4">
-                        <img className="Img" src={"../../../"+this.state.gameName+"/"+this.state.gameName+".jpg"} width="150px" height="100px" />
+                    <div className="row">
+                        <div className="col-sm-4">
+                            <img className="Img" src={"../../../" + this.state.gameName + "/" + this.state.gameName + ".jpg"} width="150px" height="100px" />
+                        </div>
+                        <div className="col-sm-4">
+
+                        </div>
+                        <div className="col-sm-4">
+                            <h3 >Score:<span className="score"> {this.state.score}</span></h3>
+                        </div>
+
                     </div>
-                    <div className="col-sm-4">
-                        
-                    </div>
-                    <div className="col-sm-4">
-                        <h3 >Score:<span className="score"> {this.state.score}</span></h3>
-                    </div>
-                    
-                </div>
-                 ) : (
-                    <div></div>
-                )}
+                ) : (
+                        <div></div>
+                    )}
             </div>
         );
     }
