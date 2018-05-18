@@ -24,7 +24,6 @@ const App = () => (
           <Route exact path="/gameAssets/:gameId" component={Game} />
           <Route exact path="/about" component={AboutUs} />
           <Route exact path="/contact" component={ContactUs} />
-
         </Wrapper>
       </div>
       <div className="row">
