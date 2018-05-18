@@ -129,14 +129,20 @@ class Game extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    {this.state.pieces.length ? (
-                        <h1 className="text-center">Play:{this.state.gameName}</h1>
-                    ) : (
-                            <h1 className="text-center">Game is not available.</h1>
-                        )}
+                    <div className="col-sm-2"><h6 className="text-center">Original Image</h6></div>
+                    <div className="col-sm-2"><h6 className="text-center"><i class="fas fa-arrow-up"></i>Random Board<i class="fas fa-arrow-right"></i></h6></div>
+                    <div className="col-sm-4">
+                        {this.state.pieces.length ? (
+                            <h6 className="text-center">Play:{this.state.gameName}(drag&drop)</h6>
+                        ) : (
+                                <h1 className="text-center">Game is not available.</h1>
+                            )}
+                    </div>
+                    <div className="col-sm-2"><h6 className="text-center"><i class="fas fa-arrow-right"></i>Answer Board<i class="fas fa-arrow-down"></i></h6></div>
+                    <div className="col-sm-2"> <h5 >Score:<span className="score"> {this.state.score}</span></h5></div>
                 </div>
                 <div className="row">
-                    <div className="col-sm-2"></div>
+                    <div className="col-sm-2"> <img className="Img" src={"../../../" + this.state.gameName + "/" + this.state.gameName + ".jpg"} width="150px" height="100px" /></div>
                     <div className="col-sm-4 text-center">
                         <RandomBoard
                             handleDragOver={this.handleDragOver}
@@ -187,16 +193,16 @@ class Game extends Component {
                 <br /><br />
                 {this.state.pieces.length ? (
                     <div className="row">
-                        <div className="col-sm-4">
+                     {/*    <div className="col-sm-4">
                             <img className="Img" src={"../../../" + this.state.gameName + "/" + this.state.gameName + ".jpg"} width="150px" height="100px" />
                         </div>
-                        <div className="col-sm-4">
+                       <div className="col-sm-4">
 
                         </div>
                         <div className="col-sm-4">
                             <h3 >Score:<span className="score"> {this.state.score}</span></h3>
                         </div>
-
+                */}
                     </div>
                 ) : (
                         <div></div>
